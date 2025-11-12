@@ -41,6 +41,22 @@ else
     exit 1
 fi
 
+# Check for Python development headers (needed for cython-bbox)
+echo "🔍 Checking Python development headers..."
+if [ -f "/usr/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/Python.h" ] || [ -f "/usr/local/include/python${PYTHON_MAJOR}.${PYTHON_MINOR}/Python.h" ]; then
+    echo "✓ Found Python.h"
+else
+    echo "⚠️  Warning: Python.h not found (needed for cython-bbox)"
+    echo "   Install with: sudo apt install python3-dev  (Ubuntu/Debian)"
+    echo "              or: brew install python@3.${PYTHON_MINOR}  (macOS)"
+    echo ""
+    read -p "Continue anyway? (y/n) [default: y]: " CONTINUE
+    CONTINUE=${CONTINUE:-y}
+    if [ "$CONTINUE" != "y" ]; then
+        exit 1
+    fi
+fi
+
 # Ask about installation method
 echo ""
 echo "Choose installation method:"

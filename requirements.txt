@@ -16,7 +16,7 @@ insightface>=0.7.3
 # Object tracking
 filterpy>=1.4.5
 lap>=0.4.0
-cython-bbox>=0.1.3
+# cython-bbox>=0.1.3  # Optional: requires python3-dev (sudo apt install python3-dev)
 
 # Speaker diarization
 pyannote.audio>=3.0.0
