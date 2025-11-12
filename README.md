@@ -2,12 +2,26 @@
 
 A production-ready system for **face tracking, speaker diarization, audio-visual mapping, and emotion change detection** in video content. Perfect for analyzing films, interviews, meetings, and any multi-speaker video content.
 
+> **🚨 INSTALLATION ISSUE FIXED**: If you encountered `uv add -r requirements.txt` errors, see [`QUICK_FIX.md`](QUICK_FIX.md) for immediate solution!
+
 ## 🎯 What You Get
 
 1. **Person Roster**: Unique face IDs (`person_1`, `person_2`, ...) with persistent tracking across the video
 2. **Speaker Roster**: Speaker diarization with overlapping speech detection (`speaker_1`, `speaker_2`, ...)
 3. **A/V Mapping**: Best match between visible persons and speakers with confidence scores
 4. **Emotion Changes**: Timestamps where vocal emotion shifts, plus auto-generated video clips
+
+## 📚 Documentation Quick Links
+
+| Need | Read This | Time |
+|------|-----------|------|
+| 🚨 **UV/pip error fix** | [`QUICK_FIX.md`](QUICK_FIX.md) | 30 sec |
+| ✅ **Complete checklist** | [`CHECKLIST.md`](CHECKLIST.md) | 5 min |
+| 🔧 **Installation guide** | [`INSTALL.md`](INSTALL.md) | 10 min |
+| ⚡ **Quick tutorial** | [`QUICKSTART.md`](QUICKSTART.md) | 5 min |
+| 🐛 **Troubleshooting** | [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) | As needed |
+| 🏗️ **Architecture** | [`ARCHITECTURE.md`](ARCHITECTURE.md) | 15 min |
+| 📊 **Workflow** | [`WORKFLOW.md`](WORKFLOW.md) | 5 min |
 
 ## 🏗️ Architecture
 
@@ -33,7 +47,7 @@ Audio → [Speech Emotion Recognition] → Emotion Time Series
 
 ## 📋 Prerequisites
 
-- **Python 3.8+**
+- **Python 3.8 - 3.12** (NOT 3.13+ due to package compatibility)
 - **FFmpeg** (must be in PATH)
 - **CUDA-capable GPU** (recommended for speed, but CPU works)
 
@@ -41,15 +55,29 @@ Audio → [Speech Emotion Recognition] → Emotion Time Series
 
 ### 1. Install Dependencies
 
+**Choose your installation method:**
+
+#### Option A: UV (Fast, recommended for Linux/macOS)
 ```bash
-cd Task31_emotion_seperation
+uv venv --python 3.11
+source .venv/bin/activate  # Linux/macOS
+uv pip sync requirements.txt
+```
+
+#### Option B: PIP (Traditional, works everywhere)
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/macOS: source venv/bin/activate
+                          # Windows: .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-**Note**: For pyannote.audio, you may need to accept their model terms and provide a HuggingFace token:
+📖 **Having issues?** See detailed instructions: [`INSTALL.md`](INSTALL.md)
+
+**Note**: For pyannote.audio, you need to accept model terms and provide a HuggingFace token:
 ```bash
-# Visit https://huggingface.co/pyannote/speaker-diarization
-# Accept conditions and get your token
+# 1. Visit https://huggingface.co/pyannote/speaker-diarization-3.1
+# 2. Accept conditions and get your token from https://huggingface.co/settings/tokens
 export HF_TOKEN=your_token_here
 ```
 
