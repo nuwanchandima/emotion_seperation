@@ -1,0 +1,52 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Video/Audio processing
+opencv-python>=4.8.0
+opencv-contrib-python>=4.8.0
+ffmpeg-python>=0.2.0
+
+# Face detection and recognition
+retinaface-pytorch>=0.0.10
+facenet-pytorch>=2.5.3
+insightface>=0.7.3
+
+# Object tracking
+filterpy>=1.4.5
+lap>=0.4.0
+cython-bbox>=0.1.3
+
+# Speaker diarization
+pyannote.audio>=3.0.0
+pyannote.core>=5.0.0
+speechbrain>=0.5.16
+
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.1
+pydub>=0.25.1
+
+# Emotion recognition
+transformers>=4.30.0
+datasets>=2.14.0
+
+# Change point detection
+ruptures>=1.1.8
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+
+# Utilities
+tqdm>=4.65.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+pillow>=10.0.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0

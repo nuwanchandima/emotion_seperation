@@ -1,0 +1,103 @@
+# Configuration for the A/V Emotion Detection Pipeline
+
+# Paths
+paths:
+  data_dir: "data"
+  output_dir: "outputs"
+  models_dir: "models"
+  clips_dir: "outputs/clips"
+
+# Video processing
+video:
+  target_fps: 10  # Process every Nth frame for efficiency
+  frame_width: 1280  # Resize for processing (null for original)
+  frame_height: null
+
+# Audio processing
+audio:
+  sample_rate: 16000
+  channels: 1  # mono
+  
+# Face detection
+face_detection:
+  model: "retinaface"  # options: retinaface, yolov8, mediapipe
+  confidence_threshold: 0.9
+  nms_threshold: 0.4
+  min_face_size: 40  # pixels
+  
+# Face tracking
+face_tracking:
+  tracker: "bytetrack"  # options: bytetrack, deepsort
+  max_age: 30  # frames
+  min_hits: 3
+  iou_threshold: 0.3
+  
+# Face recognition/embedding
+face_recognition:
+  model: "arcface"  # options: arcface, facenet
+  embedding_dim: 512
+  similarity_threshold: 0.6  # for clustering
+
+# Face clustering
+face_clustering:
+  method: "agglomerative"  # options: agglomerative, dbscan
+  distance_threshold: 0.4
+  linkage: "average"
+  min_track_length: 10  # frames
+
+# Speaker diarization
+diarization:
+  model: "pyannote/speaker-diarization-3.1"
+  min_duration_on: 0.0  # minimum duration of speech segment (seconds)
+  min_duration_off: 0.0  # minimum duration of silence between segments
+  overlap_collar: 0.0  # collar for overlapping speech detection
+
+# Active speaker detection
+active_speaker:
+  window_size: 0.25  # seconds
+  hop_size: 0.1  # seconds
+  sync_threshold: 0.5  # lip-audio sync confidence
+  
+# Audio-Visual matching
+av_matching:
+  time_window: 5.0  # seconds - sliding window for matching
+  overlap_threshold: 0.5  # minimum time overlap to consider
+  confidence_threshold: 0.6
+  
+# Speech emotion recognition
+emotion:
+  model: "wav2vec2-ser"  # options: wav2vec2-ser, ecapa-tdnn
+  window_size: 1.5  # seconds
+  hop_size: 0.25  # seconds
+  emotions: ["neutral", "happy", "sad", "angry", "fear", "disgust", "surprise"]
+  continuous: true  # predict valence-arousal
+  
+# Change point detection
+change_detection:
+  method: "pelt"  # options: pelt, kernelcpd, bottomup
+  model: "rbf"  # options: rbf, l2, l1, normal
+  penalty: 10  # higher = fewer change points
+  min_size: 4  # minimum segment size (windows)
+  merge_threshold: 0.5  # seconds - merge nearby change points
+  
+# Clip extraction
+clips:
+  padding_before: 0.5  # seconds
+  padding_after: 0.5  # seconds
+  format: "mp4"
+  codec: "copy"  # fast copy without re-encoding
+  include_emotion_label: true
+  
+# Performance
+performance:
+  batch_size: 32
+  num_workers: 4
+  use_gpu: true
+  mixed_precision: true
+  cache_embeddings: true
+  
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  save_logs: true
+  log_file: "outputs/pipeline.log"
