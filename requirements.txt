@@ -11,7 +11,7 @@ ffmpeg-python>=0.2.0
 # Face detection and recognition
 retinaface-pytorch>=0.0.7  # Fixed: max available version is 0.0.8
 facenet-pytorch>=2.5.3
-insightface>=0.7.3
+# insightface>=0.7.3  # Optional: requires python3-dev (sudo apt install python3-dev)
 
 # Object tracking
 filterpy>=1.4.5
