@@ -2,6 +2,7 @@
 torch>=2.0.0
 torchvision>=0.15.0
 torchaudio>=2.0.0
+typing-extensions>=4.5.0
 
 # Video/Audio processing
 opencv-python>=4.8.0
